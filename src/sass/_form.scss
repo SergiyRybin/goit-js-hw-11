@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     height: 60px;
+    margin-bottom: 30px;
 }
 input{
     height: 40px;
@@ -15,3 +16,32 @@ button{
     width: 100px;
     margin: 5px;
 }
+
+.gallery {
+    display: flex;
+flex-wrap: wrap;
+  margin-bottom: -30px;
+  margin-right: 30px;
+    // margin-left: -30px;
+  
+  }
+  .gallery img {
+      display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  .info{
+      display: flex;
+     
+  }
+  .photo-card{
+    width: calc((100% - 3 * 30px) / 3);
+    margin-left: 30px;
+    margin-bottom: 30px;
+    height: 100%;
+    
+  }
+  .info-item{
+    margin: 0;
+  }
