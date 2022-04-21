@@ -7,6 +7,7 @@ import * as basicLightbox from 'basiclightbox'
 
 // Notiflix.Notify.success( 'Message');
 let nameImage = '';
+let pageCount = 1;
 const searchBox = document.querySelector("#search-form")
 const boxImage = document.querySelector(".gallery")
 
@@ -17,10 +18,8 @@ function onText(event){
     // listCountry.innerHTML='';
     nameImage = event.currentTarget.elements.searchQuery.value
  
-    // if(nameImage===""){
-    //  return
-    //   }
-    fetchUser(nameImage).then(renderImage).then(openModal)
+    fetchUser(nameImage).then(renderImage).catch()
+    pageCount+=1
     // .catch(Notiflix.Notify.failure("Sorry, there are no images matching your search query. Please try again."))
   }
 
@@ -28,7 +27,7 @@ function onText(event){
 
   function renderImage({data, data:{hits}}){
     const markup = hits.map(({webformatURL, largeImageURL, tags, likes, views, comments, downloads})=>{
-      return `<div class="photo-card"><img src=${webformatURL} alt= loading="lazy" /><div class="info">
+      return `<div class="photo-card"><img src=${webformatURL} alt="" loading="lazy" /><div class="info">
         <p class="info-item">
           <b>Likes</b> ${likes}
         </p>
@@ -46,7 +45,7 @@ function onText(event){
     }).join("")
 
     boxImage.insertAdjacentHTML("beforeend", markup)
-  
+  // boxImage.innerHTML(markup)
 
 // let galleryModal = new simpleLightbox('.gallery .photo-card', {
 //   caption: true,
@@ -59,7 +58,10 @@ function onText(event){
 // })
 }
 function fetchUser(elements){
-  return axios.get(`https://pixabay.com/api/?key=26842209-8060593a7142b471474d704cf&q=${elements}&image_type=photo)`)
+  return axios.get(`https://pixabay.com/api/?key=26842209-8060593a7142b471474d704cf&q=${elements}&image_type=photo&orientation=horizontal&safesearch=true&page=${pageCount}&per_page=40`)
+}
+function renderError(){
+  return 
 }
 
 function openModal (event){
