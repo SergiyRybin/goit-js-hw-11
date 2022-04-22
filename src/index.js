@@ -4,7 +4,7 @@ import axios from 'axios';
 
 let nameImage = '';
 let pageCount=1;
-let totalHits = '';
+let totalHits;
 let perPage = 40;
 const searchBox = document.querySelector("#search-form")
 const boxImage = document.querySelector(".gallery")
@@ -23,14 +23,22 @@ function onText(event){
   fetchUser(nameImage)
   .then(renderImage)
 
+
   boxImage.innerHTML='';
+ 
+
 }
 
 async function renderImage({data, data:{hits}}){
   totalHits = data.totalHits
+
     if(totalHits===0){
      return Notiflix.Notify.failure("Sorry, there are no images matching your search query. Please try again.")
     }
+    if(pageCount===1){
+      Notiflix.Notify.info(`Hooray! We found ${totalHits} images.`)
+    }
+
     const markup = hits.map(({webformatURL, largeImageURL, tags, likes, views, comments, downloads})=>{
       return `<div class="photo-card"><img src=${webformatURL} alt="${tags}" loading="lazy" /><div class="info">
         <p class="info-item">
@@ -48,12 +56,10 @@ async function renderImage({data, data:{hits}}){
       </div>
       </div>`
     }).join("")
-
     boxImage.insertAdjacentHTML("beforeend", markup)
 
     loadMoreBtn.style.display = "block"
 
-    
     pageCount+=1
 
 }
@@ -67,7 +73,6 @@ function loadMore(){
   loadMoreBtn.addEventListener("click", ()=>{
     if(pageCount*perPage>totalHits){
       loadMoreBtn.style.display = "none"
-
       return Notiflix.Notify.info("We're sorry, but you've reached the end of search results.")
     }
     fetchUser(nameImage).then(renderImage)
