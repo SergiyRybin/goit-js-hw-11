@@ -8,9 +8,9 @@ import axios from 'axios';
 
 
 let nameImage = '';
-let pageCount = 1;
+let pageCount=1;
 let totalHits = '';
-let perPage = 100;
+let perPage = 3;
 const searchBox = document.querySelector("#search-form")
 const boxImage = document.querySelector(".gallery")
 const loadMoreBtn = document.querySelector(".load-more")
@@ -22,10 +22,16 @@ searchBox.addEventListener("submit", onText)
 function onText(event){
   event.preventDefault()
   nameImage = event.currentTarget.elements.searchQuery.value.trim()
+  
+  pageCount=1;
+
   fetchUser(nameImage)
   .then(renderImage)
-  .then(loadMore)
-  }
+
+  boxImage.innerHTML='';
+    
+  
+}
 
 function renderImage({data, data:{hits}}){
   totalHits = data.totalHits
@@ -53,15 +59,16 @@ function renderImage({data, data:{hits}}){
     boxImage.insertAdjacentHTML("beforeend", markup)
 
     loadMoreBtn.disabled = false
-    pageCount+=1
+    console.log(pageCount+=1)
 
 }
 
 async function fetchUser(elements){
     return await axios.get(`https://pixabay.com/api/?key=26842209-8060593a7142b471474d704cf&q=${elements}&image_type=photo&orientation=horizontal&safesearch=true&page=${pageCount}&per_page=${perPage}`)
-}
+  }
 
 function loadMore(){
+  
   loadMoreBtn.addEventListener("click", ()=>{
     if(pageCount*perPage>totalHits){
       loadMoreBtn.disabled = true
@@ -70,3 +77,4 @@ function loadMore(){
     fetchUser(nameImage).then(renderImage)
   })
 }
+loadMore()
