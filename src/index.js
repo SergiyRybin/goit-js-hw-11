@@ -2,11 +2,6 @@ import './sass/main.scss';
 import Notiflix from 'notiflix';
 import axios from 'axios';
 
-// import * as basicLightbox from 'basiclightbox'
-// import simpleLightbox from 'simplelightbox';
-// Notiflix.Notify.success( 'Message');
-
-
 let nameImage = '';
 let pageCount=1;
 let totalHits = '';
@@ -14,8 +9,6 @@ let perPage = 40;
 const searchBox = document.querySelector("#search-form")
 const boxImage = document.querySelector(".gallery")
 const loadMoreBtn = document.querySelector(".load-more")
-
-console.log(loadMoreBtn)
 
 loadMoreBtn.style.display = "none"
 
@@ -31,8 +24,6 @@ function onText(event){
   .then(renderImage)
 
   boxImage.innerHTML='';
-    
-  
 }
 
 async function renderImage({data, data:{hits}}){
@@ -75,7 +66,8 @@ function loadMore(){
   
   loadMoreBtn.addEventListener("click", ()=>{
     if(pageCount*perPage>totalHits){
-      loadMoreBtn.disabled = true
+      loadMoreBtn.style.display = "none"
+
       return Notiflix.Notify.info("We're sorry, but you've reached the end of search results.")
     }
     fetchUser(nameImage).then(renderImage)
