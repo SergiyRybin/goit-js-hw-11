@@ -14,18 +14,16 @@ input{
 button{
     height: 40px;
     width: 100px;
-    // margin: 5px;
+    margin: 5px;
 }
 
 .gallery {
-    display: flex;
-flex-wrap: wrap;
-  // margin-bottom: -30px;
+  display: flex;
+  flex-wrap: wrap;
   margin-right: 30px;
-    // margin-left: -30px;
-  
   }
-  .gallery img {
+  
+.gallery img {
       display: block;
     height: 100%;
     width: 100%;
@@ -33,20 +31,21 @@ flex-wrap: wrap;
   }
   .info{
       display: flex;
-     
   }
+
   .photo-card{
     width: calc((100% - 3 * 30px) / 3);
     margin-left: 30px;
     margin-bottom: 30px;
     height: 100%;
-    
   }
+  
   .info-item{
     margin: 0;
   }
 
   .load-more{
+    display: block;
     margin: 0 auto;
   }
   
