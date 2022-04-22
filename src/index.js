@@ -10,7 +10,7 @@ import axios from 'axios';
 let nameImage = '';
 let pageCount=1;
 let totalHits = '';
-let perPage = 3;
+let perPage = 40;
 const searchBox = document.querySelector("#search-form")
 const boxImage = document.querySelector(".gallery")
 const loadMoreBtn = document.querySelector(".load-more")
@@ -33,7 +33,7 @@ function onText(event){
   
 }
 
-function renderImage({data, data:{hits}}){
+async function renderImage({data, data:{hits}}){
   totalHits = data.totalHits
     if(totalHits===0){
      return Notiflix.Notify.failure("Sorry, there are no images matching your search query. Please try again.")
@@ -59,7 +59,8 @@ function renderImage({data, data:{hits}}){
     boxImage.insertAdjacentHTML("beforeend", markup)
 
     loadMoreBtn.disabled = false
-    console.log(pageCount+=1)
+    
+    pageCount+=1
 
 }
 
