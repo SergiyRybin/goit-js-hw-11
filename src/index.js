@@ -15,7 +15,9 @@ const searchBox = document.querySelector("#search-form")
 const boxImage = document.querySelector(".gallery")
 const loadMoreBtn = document.querySelector(".load-more")
 
-loadMoreBtn.disabled = true
+console.log(loadMoreBtn)
+
+loadMoreBtn.style.display = "none"
 
 searchBox.addEventListener("submit", onText)
 
@@ -58,7 +60,8 @@ async function renderImage({data, data:{hits}}){
 
     boxImage.insertAdjacentHTML("beforeend", markup)
 
-    loadMoreBtn.disabled = false
+    loadMoreBtn.style.display = "block"
+
     
     pageCount+=1
 
