@@ -39,7 +39,7 @@ async function renderImage({data, data:{hits}}){
      return Notiflix.Notify.failure("Sorry, there are no images matching your search query. Please try again.")
     }
     const markup = hits.map(({webformatURL, largeImageURL, tags, likes, views, comments, downloads})=>{
-      return `<div class="photo-card"><img src=${webformatURL} alt="" loading="lazy" /><div class="info">
+      return `<div class="photo-card"><img src=${webformatURL} alt="${tags}" loading="lazy" /><div class="info">
         <p class="info-item">
           <b>Likes</b> ${likes}
         </p>
