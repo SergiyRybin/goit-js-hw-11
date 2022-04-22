@@ -14,13 +14,13 @@ input{
 button{
     height: 40px;
     width: 100px;
-    margin: 5px;
+    // margin: 5px;
 }
 
 .gallery {
     display: flex;
 flex-wrap: wrap;
-  margin-bottom: -30px;
+  // margin-bottom: -30px;
   margin-right: 30px;
     // margin-left: -30px;
   
@@ -45,3 +45,8 @@ flex-wrap: wrap;
   .info-item{
     margin: 0;
   }
+
+  .load-more{
+    margin: 0 auto;
+  }
+  
