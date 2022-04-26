@@ -9,6 +9,8 @@ let perPage = 40;
 const searchBox = document.querySelector('#search-form');
 const boxImage = document.querySelector('.gallery');
 const loadMoreBtn = document.querySelector('.load-more');
+const KEY = "26842209-8060593a7142b471474d704cf"
+
 
 loadMoreBtn.style.display = 'none';
 
@@ -65,7 +67,7 @@ async function renderImage({ data, data: { hits } }) {
 
 async function fetchUser(elements) {
   return await axios.get(
-    `https://pixabay.com/api/?key=26842209-8060593a7142b471474d704cf&q=${elements}&image_type=photo&orientation=horizontal&safesearch=true&page=${pageCount}&per_page=${perPage}`,
+    `https://pixabay.com/api/?key=${KEY}&q=${elements}&image_type=photo&orientation=horizontal&safesearch=true&page=${pageCount}&per_page=${perPage}`,
   );
 }
 
