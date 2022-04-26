@@ -17,11 +17,15 @@ button {
 }
 
 .gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-left: -15px;
-  margin-top: -15px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+    
+  // display: flex;
+  // flex-wrap: wrap;
+  // justify-content: center;
+  // margin-left: -15px;
+  // margin-top: -15px;
   padding: 10px;
 }
 
@@ -30,20 +34,27 @@ button {
   width: 100%;
 }
 .info {
-  display: flex;
-  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  // display: flex;
 }
 
 .photo-card {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-end;
-  width: calc((100% - 3 * 15px) / 3);
-  margin-left: 15px;
-  margin-top: 15px;
+  display: grid;
+align-items: end;
+align-items: end;
+// justify-content: center;
+// justify-items: center;
+
+  // display: flex;
+  // flex-wrap: wrap;
+  // justify-content: center;
+  // align-items: flex-end;
+  // width: calc((100% - 3 * 15px) / 3);
+  // margin-left: 15px;
+  // margin-top: 15px;
   border: 1px solid lightgray;
-  border-radius: 4px;
+  border-radius: 1px;
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
     0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 }
@@ -52,10 +63,12 @@ button {
 }
 
 .info-item {
+  text-align: center;
   margin: 0;
   padding: 5px;
-  font-size: 2.5vh;
-  border-right: 1px solid lightgray;
+  font-size: 1.5vh;
+  // border: 1px solid lightgray;
+  width: 100%;
 }
 .info-item:nth-last-child(1) {
   border-right: none;
