@@ -28,6 +28,7 @@ function onText(event) {
 }
 
 async function renderImage({ data, data: { hits } }) {
+  console.log(data)
   totalHits = data.totalHits;
 
   if (totalHits === 0) {
