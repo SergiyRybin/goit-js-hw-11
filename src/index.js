@@ -5,19 +5,22 @@ import axios from 'axios';
 let nameImage = '';
 let pageCount = 1;
 let totalHits;
-let perPage = 40;
+let perPage = 200;
 const searchBox = document.querySelector('#search-form');
 const boxImage = document.querySelector('.gallery');
 const loadMoreBtn = document.querySelector('.load-more');
-const KEY = "26842209-8060593a7142b471474d704cf"
-
-
 loadMoreBtn.style.display = 'none';
+
+const KEY = '26842209-8060593a7142b471474d704cf';
+
+const loader = document.querySelector('.loader');
+loader.style.display = 'none';
 
 searchBox.addEventListener('submit', onText);
 
 function onText(event) {
   event.preventDefault();
+
   nameImage = event.currentTarget.elements.searchQuery.value.trim();
 
   pageCount = 1;
@@ -28,17 +31,7 @@ function onText(event) {
 }
 
 async function renderImage({ data, data: { hits } }) {
-  console.log(data)
   totalHits = data.totalHits;
-
-  if (totalHits === 0) {
-    return Notiflix.Notify.failure(
-      'Sorry, there are no images matching your search query. Please try again.',
-    );
-  }
-  if (pageCount === 1) {
-    Notiflix.Notify.info(`Hooray! We found ${totalHits} images.`);
-  }
 
   const markup = hits
     .map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => {
@@ -60,7 +53,17 @@ async function renderImage({ data, data: { hits } }) {
       </div>`;
     })
     .join('');
+
   boxImage.insertAdjacentHTML('beforeend', markup);
+
+  if (totalHits === 0) {
+    return Notiflix.Notify.failure(
+      'Sorry, there are no images matching your search query. Please try again.',
+    );
+  }
+  if (pageCount === 1) {
+    Notiflix.Notify.info(`Hooray! We found ${totalHits} images.`);
+  }
 
   loadMoreBtn.style.display = 'block';
 
